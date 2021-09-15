@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="school_student_view_tree">
+        <field name="name">school.student.view.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+          
+            <tree>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="phone"/>
+                <field name="state_id"/>
+                <field name="country_id"/>
+                <field name="city"/>
+                <field name="state"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="school_student_view_form">
+        <field name="name">school.student.view.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+           
+            <form>
+                <header>
+                    <button string="Enroll" type="object" name="enroll_method" class="btn-primary"/>
+                    <button string="Pass Out" type="object" name="pass_out_method" class="btn-primary"/>
+                    <button string="registered Payment" type="action" name="%(school.action_register_payment_wizard)d" class="btn-primary" /> 
+                    <field name="state" widget="statusbar" statusbar_visible="new,current,pass_out"/>
+                    
+                </header>
+            
+                <sheet>
+                <group>
+                    <field name="image"  widget="image" class="oe_avatar" nolabel='1'/>
+                </group>
+                    <group>
+                    
+                        <group>
+                            
+                            <field name="name"/>
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            
+                 
+                        </group>
+
+                         <group>
+                            <field name="country_id"/>
+                            <field name="state_id"/>
+                            <field name="city"/>
+                            <field name="street"/>
+                            <field name="zip"/>                                                   
+                            <field name="course_id" widget="many2onetag"/>
+                            <field name="active"/> 
+                   
+                        </group>
+                  
+                    </group>
+                    <notebook>
+                            <page string="Subjects">
+                                <field name="subject_ids" widget="many2manytag"/>
+                           
+                            </page>
+                    </notebook>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+              
+ 
+    <record model="ir.actions.act_window" id="action_school_student">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+    <menuitem id="menu_school" name="School" />
+    <menuitem id="menu_school_student" name="Students" sequence="1"
+            action="action_school_student" parent="school.menu_school"/>
+</odoo>

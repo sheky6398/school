@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="register_payment_wizard_view_form">
+            <field name="name">register.payment.wizard.view.form</field>
+            <field name="model">register.payment.wizard</field>
+            <field name="arch" type="xml">
+
+                <form>
+                    <group>
+                        <group>
+                            <field name="student_id"/>
+                            <field name="course_id"/>
+                            <field name="amount_paid"/>
+                        </group>
+                        <group>
+                            <field name="date_payment"/>
+                            <field name="mode"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Update Fees" type="object" name="pay_fee" class="btn-primary" />
+                        <button string="Cancel" special="cancel" class="btn-primary"/>
+                    </footer>
+
+        
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_register_payment_wizard">
+            <field name="name">Fee</field>
+            <field name="res_model">register.payment.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    
+    </data>
+</odoo>
+

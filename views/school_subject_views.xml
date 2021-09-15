@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="school_subject_view_tree">
+        <field name="name">school.course.subject.tree</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+          
+            <tree editable="top">
+                <field name="name"/>
+                <field name="department"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="school_subject_view_form">
+        <field name="name">school.subject.view.form</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+           
+            <form>
+            
+                <sheet>
+             
+                    <group>
+                    
+                        <group>
+                            
+                            <field name="name"/>
+                            <field name="department"/>
+                            <field name="description"/>
+                            <field name="subject_id"/>
+                    
+                        </group>
+                  
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+ 
+   
+    <record model="ir.actions.act_window" id="action_school_subject">
+        <field name="name">Subjects</field>
+        <field name="res_model">school.subject</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+    <menuitem id="menu_school_subject" name="Configuration" sequence="5"
+            action="action_school_subject" parent="school.menu_school"/>
+</odoo>

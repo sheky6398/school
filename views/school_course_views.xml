@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="school_course_view_tree">
+        <field name="name">school.course.view.tree</field>
+        <field name="model">school.course</field>
+        <field name="arch" type="xml">
+          
+            <tree>
+                <field name="name"/>
+                <field name="duration"/>
+                <!-- <field name="department"/> -->
+                <field name="fee"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="school_course_view_form">
+        <field name="name">school.course.view.form</field>
+        <field name="model">school.course</field>
+        <field name="arch" type="xml">
+           
+            <form>
+            
+                <sheet>
+             
+                    <group>
+                    
+                        <group>
+                            
+                            <field name="name"/>
+                            <field name="duration"/>
+                            <field name="description"/>
+                            <field name="active"/>
+
+                        </group>
+
+                        <group>
+                            
+                            <!-- <field name="department"/> -->
+                            <field name="fee"/>
+
+                        </group>
+                        
+                  
+                    </group>
+                    <group>
+                        <notebook>
+                                <page string="Teachers">
+                                    
+                                    <field name="teacher_ids"/>
+                                    
+                                </page>
+                        
+                                <page string="Students">
+                                    <field name="student_ids"/>
+                                </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+ 
+   
+    <record model="ir.actions.act_window" id="action_school_course">
+        <field name="name">Courses</field>
+        <field name="res_model">school.course</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+    <menuitem id="menu_school_course" name="Courses" sequence="3"
+            action="action_school_course" parent="school.menu_school"/>
+</odoo>
