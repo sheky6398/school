@@ -3,17 +3,18 @@
     <record model="ir.ui.view" id="school_student_view_tree">
         <field name="name">school.student.view.tree</field>
         <field name="model">school.student</field>
-        <field name="arch" type="xml">
-          
+        <field name="arch" type="xml">          
             <tree>
                 <field name="name"/>
                 <field name="age"/>
-                <field name="phone"/>
-                <field name="state_id"/>
-                <field name="country_id"/>
+                <field name="phone" optional="show"/>
+                <field name="state_id" optional="show"/>
+                <field name="country_id" optional="show"/>
+                <field name="email" optional="show"/>
                 <field name="city"/>
-                <field name="state"/>
-                
+                <field name="registration_number" optional='show'/>
+                <field name="date_registration" optional='show'/>               
+                <field name="state" widget="badge"  decoration-warning="state == 'new'" decoration-danger="state == 'pass_out'" decoration-info="state == 'current' "/>
             </tree>
         </field>
     </record>
@@ -21,66 +22,159 @@
     <record model="ir.ui.view" id="school_student_view_form">
         <field name="name">school.student.view.form</field>
         <field name="model">school.student</field>
-        <field name="arch" type="xml">
-           
+        <field name="arch" type="xml">           
             <form>
                 <header>
-                    <button string="Enroll" type="object" name="enroll_method" class="btn-primary"/>
-                    <button string="Pass Out" type="object" name="pass_out_method" class="btn-primary"/>
-                    <button string="registered Payment" type="action" name="%(school.action_register_payment_wizard)d" class="btn-primary" /> 
-                    <field name="state" widget="statusbar" statusbar_visible="new,current,pass_out"/>
-                    
-                </header>
-            
-                <sheet>
-                <group>
-                    <field name="image"  widget="image" class="oe_avatar" nolabel='1'/>
-                </group>
-                    <group>
-                    
+                    <button string="Enroll" type="object" name="enroll_method" class="btn-primary" states='new' groups="school.group_school_principal,school.group_school_teacher"/>
+                    <button string="Pass Out" type="object" name="pass_out_method" class="btn-primary" states='current' groups="school.group_school_principal,school.group_school_teacher"/>
+                    <button string="registered Payment" type="action" name="%(school.action_register_payment_wizard)d" class="btn-primary" states="current" context="{'default_student_id':active_id}" groups="school.group_school_principal,school.group_school_teacher"/> 
+                    <field name="state" widget="statusbar" statusbar_visible="new,current,pass_out" groups="school.group_school_principal,school.group_school_teacher"/>
+                    <button string="Send By Email" type="object" name="student_profile_method" class="btn-primary" groups="school.group_school_principal,school.group_school_teacher"/>                    
+                </header>            
+                <sheet> 
+                    <widget name="web_ribbon" title="Pass Out" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>         
+                    <!-- <field name="image"  widget="image" class="oe_avatar" nolabel='1' /> -->
+                    <field name="image" widget="image" class="oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image&quot;}"/>
+                    <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Student Name..." />
+                            </h1>
+                    </div>                   
+                    <group>                        
+                        <group>                            
+                            <field name="registration_number" />
+                            <field name="date_registration"/>
+                            <field name="course_id" widget="many2onetag"/>
+                            <field name="fee_id"/>
+                        </group>
                         <group>
-                            
-                            <field name="name"/>
+                            <field name="gender"/>
                             <field name="date_of_birth"/>
                             <field name="age"/>
-                            <field name="gender"/>
-                            <field name="email"/>
-                            <field name="phone"/>
-                            
-                 
+                            <field name="active" invisible="1" />                            
                         </group>
-
-                         <group>
-                            <field name="country_id"/>
-                            <field name="state_id"/>
-                            <field name="city"/>
-                            <field name="street"/>
-                            <field name="zip"/>                                                   
-                            <field name="course_id" widget="many2onetag"/>
-                            <field name="active"/> 
-                   
+                        <group>
+                        <label for="street" string="Address"/>
+                        <div class="o_address_format">
+                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                            <field name="state_id" class="o_address_state" placeholder="State"/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                            <field name="country_id" placeholder="Country" class="o_address_country" />
+                        </div> 
                         </group>
-                  
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="email" widget="email"/>
+                        </group>              
                     </group>
                     <notebook>
                             <page string="Subjects">
-                                <field name="subject_ids" widget="many2manytag"/>
-                           
-                            </page>
-                    </notebook>
-                    
+                                <field name="subject_ids" widget="many2manytag"/>                          
+                            </page>     
+                            <page string="Fee Line">
+                                <field name="fee_line_ids">
+                                    <tree>
+                                        <field name="student_id"/>
+                                        <field name="amount_paid"/>
+                                        <field name="date_paid"/>
+                                        <field name="mode"/>
+                                    </tree>
+
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="amount_paid"/>
+                                                <field name="date_paid"/>
+                                            </group>
+                                            <group>                                           
+                                                <field name="mode"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>                      
+                    </notebook>                   
                 </sheet>
+                <div class="oe_chatter" >
+                    <field name="message_follower_ids" groups="school.group_school_principal"/>
+                    <field name="activity_ids" groups="school.group_school_principal"/>
+                    <field name="message_ids" groups="school.group_school_principal"/>
+                </div>
             </form>
         </field>
     </record>
-              
- 
+
+    <record id="view_school_student_kanban" model="ir.ui.view">
+        <field name="name">school.student.kanban</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_school_student_kanban" sample="1">
+                <field name="id"/>
+                <field name="image"/>
+                <field name="name"/>
+                <field name="city"/>
+                <field name="country_id"/>               
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_school_kanban_record">
+                            <div class="o_kanban_image_fill_left" t-attf-style="background-image:url('#{kanban_image('school.student', 'image',record.id.raw_value,  placeholder)}')" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}">                                     
+                            </div>
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <h2><field name="name" placeholder="Student's Name"/></h2>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <h4><field name="course_id" widget="many2one_tags" options="{'color_field': 'color'}" /></h4>                                    
+                                <ul>
+                                    <li t-if="record.email.raw_value" class="o_text_overflow"><field name="email"/></li>
+                                    <li t-if="record.phone.raw_value" class="o_force_ltr"><field name="phone"/></li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_school_student_search" model="ir.ui.view">
+        <field name="name">school.student.search</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search string="Students">
+                <field name="name"/>               
+                <separator/>
+                    <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
+                    <filter string="Female" name="female" domain="[('gender', '=', 'female')]"/>
+                    <filter string="Others" name="other" domain="[('gender', '=', 'other')]"/>
+                <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
     <record model="ir.actions.act_window" id="action_school_student">
         <field name="name">Students</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
-    <menuitem id="menu_school" name="School" />
-    <menuitem id="menu_school_student" name="Students" sequence="1"
-            action="action_school_student" parent="school.menu_school"/>
+
+    <menuitem id="menu_school" 
+              name="School" 
+              sequence="1" />
+
+    <menuitem id="menu_school_students" 
+              name="Students" 
+              sequence="1"
+              action="action_school_student" 
+              parent="school.menu_school"/>
+
 </odoo>

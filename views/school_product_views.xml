@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="school_product_view_form">
+        <field name="name">school.product.view.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button string="Click Me" type="object" name="action_product" class="btn-primary"/>
+                </header>
+            </xpath>
+ 
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_product">
+        <field name="name">Product</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_school_product" name="Product" sequence="7"
+            action="action_school_product" parent="school.menu_school_extra"/>
+    
+</odoo>
+
+

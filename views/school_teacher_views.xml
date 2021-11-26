@@ -3,18 +3,16 @@
     <record model="ir.ui.view" id="school_teacher_view_tree">
         <field name="name">school.teacher.view.tree</field>
         <field name="model">school.teacher</field>
-        <field name="arch" type="xml">
-          
+        <field name="arch" type="xml">         
             <tree>
                 <field name="name"/>
                 <field name="designation"/>
                 <field name="department"/>
-                <field name="phone"/>
-                <field name="state_id"/>
-                <field name="country_id"/>
-                <field name="city"/>
-
-                
+                <field name="email" optional="show"/>
+                <field name="phone" optional="show"/>
+                <field name="state_id" optional="show"/>
+                <field name="country_id" optional="show"/>
+                <field name="city" optional="show"/>               
             </tree>
         </field>
     </record>
@@ -22,26 +20,31 @@
     <record model="ir.ui.view" id="school_teacher_view_form">
         <field name="name">school.teacher.view.form</field>
         <field name="model">school.teacher</field>
-        <field name="arch" type="xml">
-           
+        <field name="arch" type="xml">          
             <form>
+                <header>
+                    <button string="Terminate" type="action" name="%(school.action_teacher_terminate_wizard)d" class="btn-danger" attrs="{'invisible': [('active', '!=', True)]}" groups="school.group_school_principal" />
+                    <button string="Activate" type="object" name="action_activate" class="btn-primary" attrs="{'invisible': [('active', '=', True)]}" groups="school.group_school_principal"/>
+                    <button string="Send By Mail" type="object" name="teacher_profile_method" class="btn-info" groups="school.group_school_principal,school.group_school_teacher"/>
+                </header>
 
                 <sheet>
-                    <group>
-                        <field name="image"  widget="image" class="oe_avatar" nolabel='1'/>
-                    </group>
-                        <group>
-                        
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="image"  widget="image" class="oe_avatar" nolabel='1'/>                    
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Teacher Name..." />
+                            </h1>
+                        </div>
+                        <group>                        
                             <group>
-                                
-                                <field name="name"/>
                                 <field name="department"/>
                                 <field name="designation"/>
                                 <field name="date_of_birth"/>
                                 <field name="age"/>
                                 <field name="gender"/>
-                                <field name="email"/>
-                                <field name="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="phone" widget="phone"/>
                             </group>
                             <group>
                                 <field name="country_id"/>
@@ -49,32 +52,90 @@
                                 <field name="city"/>
                                 <field name="street"/>
                                 <field name="zip"/>
-                                <field name="active"/>
-
+                                <field name="active" widget="boolean_toggle"/>
                             </group>
-
                         </group>
                         <notebook>
-                                <page string="Courses">                                    
-                                    <field name="course_ids"/>                               
-                                </page>
-                        
-                                <page string="Subjects">
-                                    <field name="subject_ids"/> 
-                                </page>
-                        </notebook>
-               
+                            <page string="Courses">                                    
+                                <field name="course_ids"/>                               
+                            </page>
+                    
+                            <page string="Subjects">
+                                <field name="subject_ids"/> 
+                            </page>
+                        </notebook>              
                 </sheet>
+                <div class="oe_chatter" >
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>               
             </form>
         </field>
     </record>
- 
-   
+
+    <record id="view_school_teacher_kanban" model="ir.ui.view">
+        <field name="name">school.teacher.kanban</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <kanban class="o_school_teacher_kanban" sample="1">
+                <field name="id"/>
+                <field name="image"/>
+                <field name="department"/> 
+                <field name="designation"/>
+                <field name="email" />             
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_school_kanban_record">
+                            <div class="o_kanban_image_fill_left" t-attf-style="background-image:url('#{kanban_image('school.teacher', 'image',record.id.raw_value,  placeholder)}')">                                     
+                            </div>
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <h2><field name="name" placeholder="Teacher's Name"/></h2>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <field name="department" />                                  
+                                <ul>
+                                    <li t-if="record.designation.raw_value" class="o_text_overflow"><field name="designation"/></li>
+                                    <li t-if="record.phone.raw_value" class="o_force_ltr"><field name="phone"/></li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_school_teacher_search" model="ir.ui.view">
+        <field name="name">school.teacher.search</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <search string="Teachers">
+                <field name="name"/>               
+                <separator/>
+                    <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
+                    <filter string="Female" name="female" domain="[('gender', '=', 'female')]"/>
+                    <filter string="Others" name="other" domain="[('gender', '=', 'other')]"/>
+                <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_school_teacher">
         <field name="name">Teachers</field>
         <field name="res_model">school.teacher</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
+
     <menuitem id="menu_school_teacher" name="Teachers" sequence="2"
             action="action_school_teacher" parent="school.menu_school"/>
 </odoo>

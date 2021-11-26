@@ -1,0 +1,49 @@
+<odoo>
+    <record model="ir.ui.view" id="res_partner_inherited_view_form">
+        <field name="name">res.partner.inherited.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">            
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button string="Click Me" name="action_click_me" type="object" class="btn-primar"/>
+                        <button string="Calculate age" type="object" name="calculate_age_method" class="btn-primary"/>
+                    </header>
+                </xpath>                
+                <field name="category_id" position="after">
+                    <field name="date_of_birth"/>
+                </field>
+                <xpath expr="//field[@name='date_of_birth']" position="before">
+                    <field name="age" />
+                </xpath>               
+                <notebook position='inside'>
+                    <page string="Customer Feedback">
+                        <field name="customer_feedback"/>                   
+                    </page>
+                </notebook>           
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="res_partner_inherited_view_tree">
+        <field name="name">res.partner.inherited.view.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_name']" position="after">
+                <field name="date_of_birth" />
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="replace">
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_res_partner_inherited">
+        <field name="name">Customer</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_res_partner_inherited" name="Customer" sequence="6"
+            action="action_res_partner_inherited" parent="school.menu_school_extra"/>
+</odoo>
+

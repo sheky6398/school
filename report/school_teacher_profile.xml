@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_school_teacher">
+        <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">                   
+                    <t t-call="web.external_layout">
+                         
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <p style= "font-size:80px;">
+                                        <t t-if="o.age">
+                                        <p><span t-field="o.age"/></p>
+                                        </t> 
+
+                                        <h2><span t-field="o.name"/> </h2>
+                                        <p> Designation : <strong>  <span t-field="o.designation"/> </strong></p>
+                                        <p> Department : <strong>  <span t-field="o.department"/> </strong></p>
+                                        <p> Email : <strong>  <span t-field="o.email"/> </strong></p>
+                                        <p> Country : <strong>  <span t-field="o.country_id"/> </strong></p>
+
+                                        <t t-if="o.age">
+                                            <p> Rank</p>
+                                        </t> 
+                                        <t t-if-else="o.name">
+                                            <p> Name</p>
+                                        </t> 
+                                    </p>                                   
+                                </div>
+                            </div>                           
+                        </div>                        
+                    </t>
+                </t>
+        </t>
+    </template>
+
+</odoo>
+

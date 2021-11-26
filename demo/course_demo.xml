@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="btech" model="school.course">
+            <field name="name">Btech</field>
+            <field name="duration">4_year</field>
+            <field name="fee">100000</field>  
+            <field name="department">Bachelor of Technology</field> 
+        </record>
+        <record id="bcom" model="school.course">
+            <field name="name">Bcom</field>
+            <field name="duration">3_year</field>
+            <field name="fee">87000</field>  
+            <field name="department">Bachelor of Commerce</field>          
+        </record>
+        <record id="bca" model="school.course">
+            <field name="name">Bca</field>
+            <field name="duration">3_year</field>
+            <field name="fee">75000</field> 
+            <field name="department">Bachelor of Computer Applications</field>           
+        </record>
+        <record id="polytechnic" model="school.course">
+            <field name="name">Polytechnic</field>
+            <field name="duration">2_year</field>
+            <field name="fee">56000</field>
+            <field name="department">Diploma</field>            
+        </record>
+        <record id="mba" model="school.course">
+            <field name="name">Mba</field>
+            <field name="duration">2_year</field>
+            <field name="fee">150000</field> 
+            <field name="department">Master of Business Administration</field>           
+        </record>
+        
+        
+    </data>
+</odoo>

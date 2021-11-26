@@ -3,3 +3,7 @@ from . import school_teacher
 from . import school_course
 from . import school_student_fee
 from . import school_subject
+from . import res_partner_inherited
+from . import school_product
+from . import sale_order
+from . import school_student_fee_line

@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="teacher_terminate_wizard_view_form">
+            <field name="name">teacher.terminate.wizard.view.form</field>
+            <field name="model">teacher.terminate.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <label for='reason' />                                         
+                    <field name="reason" required="True"/>                    
+                    <footer>
+                        <button string="Submit" type="object" name="teacher_terminate" class="btn-success" />
+                        <button string="Cancel" special="cancel" class="btn-danger"/>
+                    </footer> 
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_teacher_terminate_wizard">
+            <field name="name">Terminate</field>
+            <field name="res_model">teacher.terminate.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>   
+    </data>
+</odoo>
+

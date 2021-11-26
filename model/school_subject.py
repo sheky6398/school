@@ -1,4 +1,4 @@
-from odoo import models,fields,api
+from odoo import models,fields
 
 class SchoolSubject(models.Model):
     _name = "school.subject"
@@ -6,6 +6,7 @@ class SchoolSubject(models.Model):
 
 
     name = fields.Char(string='Subject Name',required=True)
-    description = fields.Text()
-    department = fields.Char()
-    subject_id = fields.Many2one('school.subject',string='subject')
+    description = fields.Html(string="Description")
+    department = fields.Char(string="Department",required=True)
+    subject_id = fields.Many2one('school.subject',string='Subject')
+    course_id = fields.Many2one('school.course',string='Course',required=True)

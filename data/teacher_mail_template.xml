@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="school_teacher_email_template" model="mail.template">
+            <field name="name">Teacher's Profile: Send By Email</field>
+            <field name="model_id" ref="school.model_school_teacher"/>
+            <field name="email_from">${object.env.user.partner_id.email | safe} </field>
+            <field name="email_to">${object.email}</field>
+            <field name="report_template" ref="school.action_report_school"/>
+            <field name="report_name">Teacher's's profile ${object.name}</field>
+            <field name="subject">Teacher's Profile (Ref ${object.name})</field>
+            <field name="body_html" type="html">
+                <div style="margin:0px; padding:0px;">
+                    <p style="margin:0px; padding:0px; font-size:15px;">
+                        Dear ${object.name}
+                        <br/><br/>
+                        Here is the Teacher's Profile 
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
