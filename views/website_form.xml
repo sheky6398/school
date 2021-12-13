@@ -4,7 +4,7 @@
         <field name="name">Student Form</field>
         <field name="url">/student_webform</field>
         <field name="parent_id" ref="website.main_menu"/>
-        <field name="sequence">55</field>
+        <field name="sequence">65</field>
     </record>
 
     <template id="create_student_form" name="Create Student Form">
@@ -12,7 +12,7 @@
             <div id="wrap">
                 <div class="oe_structure">
                     <div class="container">
-                        <form role="form" action="/create/webstudent" method="POST">
+                        <form role="form" action="/create/webstudents" method="POST">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             <div class="form-group">
                                 <label for="name" class="control-label">Name</label>
