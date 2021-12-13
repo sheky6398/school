@@ -13,7 +13,7 @@ class Student(http.Controller):
         _logger.info(f'\nEXECUTION HERE-----------\n')
         return request.render("school.create_student_form", {})
 
-    @http.route('/create/webstudent', type='http', auth='public', webiste=True)
+    @http.route('/create/webstudent', type='http', auth='public',methods=['POST'], website=True)
     def create_studentform(self, **kw):
         _logger.info(f'\nDATA RECEIVED = {kw}-----------\n')
         request.env['school.student'].sudo().create(kw)
