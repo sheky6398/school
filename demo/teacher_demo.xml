@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="school_teacher1" model="school.teacher">
+            <field name="name">Teacher1</field>
+            <field name="designation">H.O.D</field>
+            <field name="department">Master of Business Administration</field>
+            <field name="zip">201009</field>
+            <field name="date_of_birth">1985-05-11</field>
+            <field name="city">Delhi</field>
+            <field name="phone">0123456789</field>
+            <field name="state_id" ref="base.state_in_dl"/>
+            <field name="country_id" ref="base.in"/>          
+            <field name="street">Vivek Vihar</field>                     
+            <field name="gender">male</field>
+        </record>
+        <record id="school_teacher2" model="school.teacher">
+            <field name="name">Teacher2</field>
+            <field name="designation">Co-ordinator</field>
+            <field name="department">Bachelor of Computer Applications</field>
+            <field name="zip">250009</field>
+            <field name="date_of_birth">1991-04-24</field>
+            <field name="city">Moradabad</field>
+            <field name="phone">111111111</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>           
+            <field name="street">Nand Vihar</field>                    
+            <field name="gender">female</field>
+        </record>
+        <record id="school_teacher3" model="school.teacher">
+            <field name="name">Teacher3</field>
+            <field name="designation">Co-ordinator</field>
+            <field name="department">Bachelor of Commerce</field>
+            <field name="zip">201301</field>
+            <field name="date_of_birth">1993-10-19</field>
+            <field name="city">Noida</field>
+            <field name="phone">5555555555</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>            
+            <field name="street">Sector-62</field>                    
+            <field name="gender">male</field>
+        </record>
+        <record id="school_teacher4" model="school.teacher">
+            <field name="name">Teacher4</field>
+            <field name="designation">Principal</field>
+            <field name="department">Bachelor of Technology</field>
+            <field name="zip">201309</field>
+            <field name="date_of_birth">1989-09-15</field>
+            <field name="city">Meerut</field>
+            <field name="phone">9897342587</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>            
+            <field name="street">Heights</field>                    
+            <field name="gender">female</field>
+        </record>
+        
+        <record id="school_teacher5" model="school.teacher">
+            <field name="name">Teacher5</field>
+            <field name="designation">H.O.D</field>
+            <field name="department">Diploma</field>
+            <field name="zip">201309</field>
+            <field name="date_of_birth">1985-08-19</field>
+            <field name="city">Meerut</field>
+            <field name="phone">8439364580</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>             
+            <field name="street">Nagar</field>                     
+            <field name="gender">female</field>
+        </record>
+        
+    </data>
+</odoo>

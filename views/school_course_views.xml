@@ -3,14 +3,12 @@
     <record model="ir.ui.view" id="school_course_view_tree">
         <field name="name">school.course.view.tree</field>
         <field name="model">school.course</field>
-        <field name="arch" type="xml">
-          
-            <tree>
+        <field name="arch" type="xml">         
+            <tree >
                 <field name="name"/>
                 <field name="duration"/>
-                <!-- <field name="department"/> -->
+                <field name="department"/>
                 <field name="fee"/>
-
             </tree>
         </field>
     </record>
@@ -18,47 +16,61 @@
     <record model="ir.ui.view" id="school_course_view_form">
         <field name="name">school.course.view.form</field>
         <field name="model">school.course</field>
-        <field name="arch" type="xml">
-           
-            <form>
-            
+        <field name="arch" type="xml">          
+            <form>           
                 <sheet>
-             
-                    <group>
-                    
-                        <group>
-                            
-                            <field name="name"/>
-                            <field name="duration"/>
-                            <field name="description"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>            
+                    <group>                   
+                        <group>                       
+                            <field name="duration"/>                           
                             <field name="active"/>
-
                         </group>
-
-                        <group>
-                            
-                            <!-- <field name="department"/> -->
+                        <group>                           
+                            <field name="department"/>
                             <field name="fee"/>
-
-                        </group>
-                        
-                  
+                        </group>                 
                     </group>
                     <group>
                         <notebook>
-                                <page string="Teachers">
-                                    
-                                    <field name="teacher_ids"/>
-                                    
-                                </page>
-                        
-                                <page string="Students">
-                                    <field name="student_ids"/>
-                                </page>
+                            <page string="Description">                                   
+                                <field name="description"/>                                   
+                            </page>
+                            <page string="Teachers">
+                                <field name="teacher_ids" groups="school.group_school_principal,school.group_school_teacher"/>
+                            </page>                           
+                            <page string="Students">
+                                <field name="student_ids"/>
+                            </page>                                   
+                            <page string="Subjects">
+                                <field name="subject_ids"/>
+                            </page>
                         </notebook>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_school_course_search" model="ir.ui.view">
+        <field name="name">school.course.search</field>
+        <field name="model">school.course</field>
+        <field name="arch" type="xml">
+            <search string="Courses">
+                <field name="name"/>               
+                <separator/>
+                    <filter string="4 Year" name="duration" domain="[('duration', '=', '4_year')]"/>
+                    <filter string="3 Year" name="duration" domain="[('duration', '=', '3_year')]"/>
+                    <filter string="2 Year" name="duration" domain="[('duration', '=', '2_year')]"/>               
+                <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Duration" name="duration" context="{'group_by':'duration'}"/>
+                </group>
+            </search>
         </field>
     </record>
  
@@ -66,8 +78,10 @@
     <record model="ir.actions.act_window" id="action_school_course">
         <field name="name">Courses</field>
         <field name="res_model">school.course</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
+    
     <menuitem id="menu_school_course" name="Courses" sequence="3"
             action="action_school_course" parent="school.menu_school"/>
+
 </odoo>

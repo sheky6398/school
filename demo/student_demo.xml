@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="school_student1" model="school.student">
+            <field name="name">Student1</field>
+            <field name="zip">201009</field>
+            <field name="date_of_birth">1997-05-11</field>
+            <field name="city">punjab</field>
+            <field name="phone">1234567890</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>          
+            <field name="street">Tech zone 4</field>           
+            <field name="email">aa@gmail.com</field>           
+            <field name="gender">male</field>
+            <field name="registration_number">123456</field>
+            <field name="date_registration">2021-09-22</field>
+            <field name="course_id" ref='school.btech'/>
+            
+            
+        </record>
+        <record id="school_Student2" model="school.student">
+            <field name="name">Student2</field>
+            <field name="zip">250001</field>
+            <field name="date_of_birth">1997-04-24</field>
+            <field name="city">Meerut</field>
+            <field name="phone">999999999</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>           
+            <field name="street">valley</field>           
+            <field name="email">ab@gmail.com</field>           
+            <field name="gender">male</field>
+            <field name="registration_number">123456</field>
+            <field name="date_registration">2021-09-22</field>
+            <field name="course_id" ref='school.bcom'/>
+        </record>
+        <record id="school_Student3" model="school.student">
+            <field name="name">Student3</field>
+            <field name="zip">201009</field>
+            <field name="date_of_birth">1995-10-19</field>
+            <field name="city">Noida</field>
+            <field name="phone">0123456789</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>         
+            <field name="street">Tech zone 4</field>           
+            <field name="email">ac@gmail.com</field>           
+            <field name="gender">male</field>
+            <field name="registration_number">123456</field>
+            <field name="date_registration">2021-09-22</field>
+            <field name="course_id" ref='school.bca'/>
+        </record>
+        <record id="school_Student4" model="school.student">
+            <field name="name">Student4</field>
+            <field name="zip">201301</field>
+            <field name="date_of_birth">1998-09-15</field>
+            <field name="city">Modinagar</field>
+            <field name="phone">9897342587</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>          
+            <field name="street">colony</field>           
+            <field name="email">ad@gmail.com</field>           
+            <field name="gender">female</field>
+            <field name="registration_number">123456</field>
+            <field name="date_registration">2021-09-22</field>
+            <field name="course_id" ref='school.mba'/>
+        </record>
+        <record id="school_Student5" model="school.student">
+            <field name="name">Student5</field>
+            <field name="zip">201309</field>
+            <field name="date_of_birth">1997-08-19</field>
+            <field name="city">Meerut</field>
+            <field name="phone">0000111122</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="country_id" ref="base.in"/>          
+            <field name="street">vihar</field>           
+            <field name="email">ae@gmail.com</field>           
+            <field name="gender">female</field>
+            <field name="registration_number">123456</field>
+            <field name="date_registration">2021-09-22</field>
+            <field name="course_id" ref='school.polytechnic'/>
+        </record>
+        
+    </data>
+</odoo>

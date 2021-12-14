@@ -1,0 +1,93 @@
+<odoo>
+    <data>
+        <record id="physics" model="school.subject">
+            <field name="name">Physics</field>
+            <field name="department">Bachelor Of Technology</field>
+            <field name="course_id" ref='school.btech'/>
+        </record>  
+
+        <record id="chemistry" model="school.subject">
+            <field name="name">Chemistry</field>
+            <field name="department">Bachelor of Technology</field>
+            <field name="course_id" ref='school.btech'/>
+        </record>   
+
+        <record id="maths" model="school.subject">
+            <field name="name">Maths</field>
+            <field name="department">Bachelor of Technology</field>
+            <field name="course_id" ref='school.btech'/>
+        </record> 
+
+        <record id="banking_and_insurance" model="school.subject">
+            <field name="name">Banking and Insurance</field>
+            <field name="department">Bachelor of Commerce</field>
+            <field name="course_id" ref='school.bcom'/>
+        </record> 
+
+        <record id="e_commerce" model="school.subject">
+            <field name="name">E-Commerce</field>
+            <field name="department">Bachelor of Commerce</field>
+            <field name="course_id" ref='school.bcom'/>
+        </record> 
+
+        <record id="indian_economy" model="school.subject">
+            <field name="name">Indian Economy</field>
+            <field name="department">Bachelor of Commerce</field>
+            <field name="course_id" ref='school.bcom'/>
+        </record> 
+
+        <record id="strategic_management" model="school.subject">
+            <field name="name">Strategic Management</field>
+            <field name="department">Master of Business Administration</field>
+            <field name="course_id" ref='school.mba'/>
+        </record>
+
+        <record id="business_environment" model="school.subject">
+            <field name="name">Business Environment</field>
+            <field name="department">Master of Business Administration</field>
+            <field name="course_id" ref='school.mba'/>
+        </record>
+
+        <record id="production_and_operations_management" model="school.subject">
+            <field name="name">Production and Operations Management</field>
+            <field name="department">Master of Business Administration</field>
+            <field name="course_id" ref='school.mba'/>
+        </record>
+
+        <record id="c_programming" model="school.subject">
+            <field name="name">C Programming</field>
+            <field name="department">Bachelor of Computer Applications</field>
+            <field name="course_id" ref='school.bca'/>
+        </record>
+
+        <record id="operating_system" model="school.subject">
+            <field name="name">Operating Systems</field>
+            <field name="department">Bachelor of Computer Applications</field>
+            <field name="course_id" ref='school.bca'/>
+        </record>
+
+        <record id="fundamentals_of_computers" model="school.subject">
+            <field name="name">Fundamentals of Computers</field>
+            <field name="department">Bachelor of Computer Applications</field>
+            <field name="course_id" ref='school.bca'/>
+        </record>
+
+        <record id="introduction_to_manufacturing_processes" model="school.subject">
+            <field name="name">Introduction to Manufacturing Processes</field>
+            <field name="department">Bachelor Of Technology</field>
+            <field name="course_id" ref='school.btech'/>
+        </record>
+
+        <record id="digital_computer_fundamentals" model="school.subject">
+            <field name="name">Digital Computer Fundamentals</field>
+            <field name="department">Bachelor of Computer Applications</field>
+            <field name="course_id" ref='school.bca'/>
+        </record>
+
+        <record id="system_analysis_and_design" model="school.subject">
+            <field name="name">System Analysis and Design</field>
+            <field name="department">Bachelor of Computer Applications</field>
+            <field name="course_id" ref='school.bca'/>
+        </record>
+    </data>
+</odoo>

@@ -3,12 +3,11 @@
     <record model="ir.ui.view" id="school_subject_view_tree">
         <field name="name">school.course.subject.tree</field>
         <field name="model">school.subject</field>
-        <field name="arch" type="xml">
-          
-            <tree editable="top">
+        <field name="arch" type="xml">         
+            <tree editable="bottom">
                 <field name="name"/>
                 <field name="department"/>
-
+                <field name="course_id"/>
             </tree>
         </field>
     </record>
@@ -16,36 +15,41 @@
     <record model="ir.ui.view" id="school_subject_view_form">
         <field name="name">school.subject.view.form</field>
         <field name="model">school.subject</field>
-        <field name="arch" type="xml">
-           
-            <form>
-            
-                <sheet>
-             
-                    <group>
-                    
-                        <group>
-                            
+        <field name="arch" type="xml">          
+            <form>            
+                <sheet>             
+                    <group>                    
+                        <group>                            
                             <field name="name"/>
-                            <field name="department"/>
-                            <field name="description"/>
-                            <field name="subject_id"/>
-                    
-                        </group>
-                  
-                    </group>
-                    
+                            <field name="department"/>                 
+                        </group> 
+                        <group> 
+                            <field name="course_id"/>
+                        </group> 
+                    </group>  
+                    <notebook>
+                        <page string="Description">                                    
+                            <field name="description"/>                               
+                        </page>
+                    </notebook>                                   
                 </sheet>
             </form>
         </field>
     </record>
- 
    
     <record model="ir.actions.act_window" id="action_school_subject">
         <field name="name">Subjects</field>
         <field name="res_model">school.subject</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_school_subject" name="Configuration" sequence="5"
-            action="action_school_subject" parent="school.menu_school"/>
+   
+    <menuitem id="menu_school_config" name="Configuration" sequence="5"
+             parent="school.menu_school"/>
+    
+    <menuitem id="menu_school_subject" name="Subjects" sequence="1"
+            action="action_school_subject" parent="school.menu_school_config"/>
+
+    <menuitem id="menu_school_extra" name="Extra" sequence="2"
+             parent="school.menu_school_config"/>
+
 </odoo>

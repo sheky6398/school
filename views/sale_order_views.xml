@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="sale_order_view_form">
+        <field name="name">sale.order.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button string="Testing Purpose" type="object" name="action_test" class="btn-primary"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_sale_order" model="ir.actions.act_window">
+        <field name="name">Sales</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_school_sale_order" name="Sale" sequence="8"
+            action="action_sale_order" parent="school.menu_school_extra"/> 
+</odoo>

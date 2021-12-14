@@ -4,36 +4,33 @@
             <field name="name">register.payment.wizard.view.form</field>
             <field name="model">register.payment.wizard</field>
             <field name="arch" type="xml">
-
                 <form>
                     <group>
                         <group>
-                            <field name="student_id"/>
+                            <field name="student_id" readonly="True"/>
                             <field name="course_id"/>
                             <field name="amount_paid"/>
+                            <field name="currency_id" invisible="1"/>
                         </group>
                         <group>
                             <field name="date_payment"/>
                             <field name="mode"/>
                         </group>
-
                     </group>
                     <footer>
                         <button string="Update Fees" type="object" name="pay_fee" class="btn-primary" />
                         <button string="Cancel" special="cancel" class="btn-primary"/>
-                    </footer>
-
-        
+                    </footer>      
                 </form>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="action_register_payment_wizard">
             <field name="name">Fee</field>
             <field name="res_model">register.payment.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
-        </record>
-    
+        </record>   
     </data>
 </odoo>
 
